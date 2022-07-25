@@ -49,6 +49,8 @@ Kondisi dataset sebelum dilakukan transformasi memiliki masalah sebagai berikut 
 
 Berikut Merupakan deskripsi mengenai data dengan pendekatan statistik.
 
+<img width="582" alt="1" src="https://user-images.githubusercontent.com/85445609/180754320-baabd18e-6121-405a-9eaf-b1611062a1db.png">
+
 ## Data Preparation
 Sebelum melakukan modelling, kita akan menyiapkan data yang lebih matang sebelum digunakan. Berikut merupakan penerapan yang dilakukan pada tahap data preparation.
 
@@ -77,6 +79,8 @@ Pada tahap akhir proyek machine learning ini, kita akan mengevaluasi performa mo
 
 Kita ketahui bahwa performa terbaik dipegang oleh model dari Random Forest Classifier. Hal ini bisa kita lihat nilai MSE yang diberikan, yaitu untuk train hampir mendekati 0 dan test 0.000031. Kita juga bisa membuktikan bahwa model Random Forest Classifier adalah model terbaik diantara yang lain dengan melihat hasil dari metriks lain seperti akurasi, presisi, recall, dan F1. Berikut merupakan hasil metriks-metrisk yang disebutkan untuk model Random Forest Classiefier.
 
+
+<img width="298" alt="2" src="https://user-images.githubusercontent.com/85445609/180754280-47dae7aa-cf6a-4da8-96b8-177d4a7ac60f.png">
 
 
 
