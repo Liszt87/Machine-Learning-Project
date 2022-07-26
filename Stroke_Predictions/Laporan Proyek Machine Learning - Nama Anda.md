@@ -94,6 +94,7 @@ Tahapan yang dilakukan adalah melakukan deklarasi tiap model kemudian memberikan
 Pada tahap akhir proyek machine learning ini, kita akan mengevaluasi performa model melalui metriks. Metriks yang digunakan lain adalah MSE, akurasi, presisi, recall, F1. Alasan mengapa menggunakan metriks tersebut adalah untuk mengukur error yang diperoleh tiap model dengan Menggunakan MSE dan error yang terkecil akan dipilih sebagai model terbaik. Untuk metriks yang lainnya, kita hanya mengukur performa model dari akurasi tetapi kita juga melihat presisi, recall, dan F1 karena belum tentu model memiliki akurasi tinggi akan dikatakan bagus jika metriks yang lain tidak diperhatikan dan hal ini akan mempengaruhi performa model.
 
 Berikut merupakan formula untuk setiap metriks yang dipakai dalam pengevealuasian model.
+
 <img width="134" alt="3" src="https://user-images.githubusercontent.com/85445609/181037781-fb4187b4-3794-4ee4-9898-cce4c872e9f1.png">
 <img width="275" alt="4" src="https://user-images.githubusercontent.com/85445609/181037797-3bf430b6-4939-47da-9fef-8d2ef118f06c.png">
 
