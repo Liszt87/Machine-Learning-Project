@@ -1,7 +1,7 @@
 # Laporan Proyek Machine Learning - Dimas Pangestu Aji Purnomo
 ## Domain Proyek
 
-Stroke menurut World Health Organization (WHO) adalah penyebab utama kecacatan dan kematian secara global yang secara tidak proporsional mempengaruhi orang-orang di negara-negara berpenghasilan rendah dan menengah. Di seluruh dunia, stroke merupakan penyebab kematian nomor dua dan penyebab kecacatan nomor tiga. Sekitar 70% stroke terjadi di negara-negara berpenghasilan rendah dan menengah, di mana insiden stroke meningkat lebih dari dua kali lipat selama empat dekade terakhir dan rata-rata stroke terjadi pada orang 15 tahun lebih awal daripada di negara berpenghasilan tinggi. negara. Hingga 84% pasien stroke di negara berpenghasilan rendah dan menengah meninggal dalam waktu tiga tahun setelah diagnosis, dibandingkan dengan 16% di negara berpenghasilan tinggi. Pencegahan dapat dilakukan dengan cara melihat kondisi suatu individu tersebut, seperti BMI, rata-rata tingkat glukosa, pernah merokok atau tidak, dan sebagainya. Kondisi-kondisi tersebut dapat kita ambil sebagai data dimana kita bisa memanfaatkannya untuk kebutuhan lain. Namun, hal tersebut membuat individu memeriksa setiap periode tertentu, artinya mereka hanya membuang waktu dan menunggu saja sampai kondisi dirasa mulai kritis. Oleh karena itu, untuk menyelesaikan masalah tersebut maka machine learning mempunyai peran penting dalam masalah ini. Machine learning dapat memprediksi apakah dengan kondisi-kondisi tersebut berpotensial akan mengakibatkan stroke kedepannya dan itulah data yang dikumpulkan berguna untuk masalah ini.
+Stroke menurut World Health Organization (WHO) adalah penyebab utama kecacatan dan kematian secara global yang secara tidak proporsional mempengaruhi orang-orang di negara-negara berpenghasilan rendah dan menengah. Di seluruh dunia, stroke merupakan penyebab kematian nomor dua dan penyebab kecacatan nomor tiga. Sekitar 70% stroke terjadi di negara-negara berpenghasilan rendah dan menengah, di mana insiden stroke meningkat lebih dari dua kali lipat selama empat dekade terakhir dan rata-rata stroke terjadi pada orang 15 tahun lebih awal daripada di negara berpenghasilan tinggi. Sebanyak 84% pasien stroke di negara berpenghasilan rendah dan menengah meninggal dalam waktu tiga tahun setelah diagnosis, dibandingkan dengan 16% di negara berpenghasilan tinggi. Pencegahan dapat dilakukan dengan cara melihat kondisi suatu individu tersebut, seperti BMI, rata-rata tingkat glukosa, pernah merokok atau tidak, dan sebagainya. Kondisi-kondisi tersebut dapat kita ambil sebagai data dimana kita bisa memanfaatkannya untuk kebutuhan lain. Namun, hal tersebut membuat individu memeriksa setiap periode tertentu, artinya mereka hanya membuang waktu dan menunggu saja sampai kondisi dirasa mulai kritis. Oleh karena itu, untuk menyelesaikan masalah tersebut maka machine learning mempunyai peran penting dalam masalah ini. Machine learning dapat memprediksi apakah dengan kondisi-kondisi tersebut berpotensial akan mengakibatkan stroke kedepannya dan itulah data yang dikumpulkan berguna untuk masalah ini.
 
 ## Business Understanding
 Berdasarkan kondisi yang telah diuraikan sebelumnya, Kita dapat mengembangkan sebuah sistem prediksi apakah individu berpotensial strokes untuk menjawab permasalahan berikut. 
@@ -18,7 +18,7 @@ Dari permasalahan tersebut, maka kita akan membuat tujuan dalam menyelesaikan ma
 
 Data yang digunakan adalah dataset “Stroke Predictions” yang diambil dari website Kaggle.com. Beirkut merupakan link dataset yang digunakan dalam proyek machine learning ini.
 
-https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset
+[Link dataset](https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset)
 
 Dataset ini memiliki 5110 sampel dan memiliki 12 kolom atribut, yaitu :
 1.	id : Identifikasi individu yang unik.
@@ -47,10 +47,22 @@ Kondisi dataset sebelum dilakukan transformasi memiliki masalah sebagai berikut 
 - Korelasi fitur kategorikal dan label memiliki hubungan yang tipis namun masih dapat digunakan sebagai input.
 - Begitu juga untuk fitur numerical, korelasi tiap fitur dengan label memiliki nilai yang rendah tetapi masih dapat digunakan untuk input model.
 
-Berikut Merupakan deskripsi mengenai data dengan pendekatan statistik.
+Berikut Merupakan deskripsi mengenai data dengan melihat dari segi informasi statistikanya.
+
+<img width="582" alt="1" src="https://user-images.githubusercontent.com/85445609/180754320-baabd18e-6121-405a-9eaf-b1611062a1db.png">
 
 ## Data Preparation
 Sebelum melakukan modelling, kita akan menyiapkan data yang lebih matang sebelum digunakan. Berikut merupakan penerapan yang dilakukan pada tahap data preparation.
+
+- **Menghilangkan Attribut Yang Tidak Dipakai & Menghilangkan Suatu Kelas Pada Suatu Attirbute**
+Dari hasil EDA yang sudah kita lakukan, kita mendapatkan informasi yang kita butuhkan dan dapat memutuskan fitur yang mana yang akan dipakai. Namun, kita menemukan attribute yang dirasa kurang berguna untuk dijadikan fitur, yaitu attribute id. Alasannya adalah secara fakta id tidak ada hubungannya dengan kondisi individu terkena stroke atau tidak dan karena kita sudah menentukan korelasi tiap fitur numerik terhadap attribute stroke maka kita ketahui bahwa attribute tersebut memiliki tingkat korelasi yang rendah anatar attribute id dan stroke.
+
+Kita juga menemukan kelas yang menurut kita adalah anomaly, misalkan pada attribute gender. Pada attribute tersebut, kita menemukan 3 gender tetapi kita ketahui bahwa di dunia ini terdapat 2 gender saja, yaitu laki-laki dan wanita.
+
+Dari 2 permasalahan yang kita dapat, kita dapat melakukan dropping attribute untuk id dan menghilangkan sample yang memiliki kelas gender Other. Teknik yang digunakan untuk melakukan hal tersebut sangat sederhana. Kita hanya perlu melakukan drop pada attribute dengan menggunakan fungsi drop() dengam parameter ['id'], inplace = True, axis = 1. Dengan menggunakan fungsi dan parameter tersebut kita berhasil menghilangkan semua data pada attribute ID.
+
+Untuk menghilangkan kelas other pada attribute gender maka kita perlu menghilangkannya dengan cara memanggil dataset strokes dengan parameter "strokes.gender != 'Other" sehingga kita dapat menghilangkan data dari baris yang mengandung gender other.
+
 
 - **Encoding Fitur Kategorikal**
 Kita ketahui bahwa kiya memiliki fitur kategorikal yang akan digunakan sebagai input sedangkan komputer hanya bisa memproses angka saja. Oleh karena itu, kita dapat menggunakan teknik LabelEncoder dari library sklearn untuk mengubah fitur kategorikal yang memiliki nilai biner. Untuk nilai yang lebih dua kita dapat melakukan encoding dengan cara menggunakan fungsi “get_dummies(strokes) dari library pandas untuk masalah tersebut.
@@ -62,11 +74,17 @@ Pada tahap EDA, kiita ketahui jumlah label pada attribute stroke tidak seimbang.
 Pada tahap ini, kita akan membuat data train dan data test untuk input pada model yang kita buat nantinya. Data ini akan kita bagi menjadi X_train, y_train, X_test, y_test dengan menggunakan teknik train_test_split pada library sklearn.model.selection.
 
 - **Standarisasi**
-Pada tahap terakhir ini, kita akan melakukan standarisasi pada data- data yang sudah kita buat sebelumnya. Kita akan menggunakan StandarScaler() pada library sklearn.preprocessing.
+Pada tahap terakhir ini, kita akan melakukan standarisasi pada data- data yang sudah kita buat sebelumnya. Kita akan menggunakan StandarScaler() pada library sklearn.preprocessing. Random forest merupakan salah satu model machine learning yang termasuk ke dalam kategori ensemble (group) learning, artinya 
 
 ## Modelling
 
-Pada tahap modelling ini, kita akan membuat  3 model untuk prediksi. Model yang digunakan antara lain adalah K-Nearest Neighbour Classifier, Random Forest Classifier, dan Gradient Boosting Classifier. Alasan mengapa kita akan mengunakan model tersebut adalah tujuan dari masalah yang diangkat dalam proyek ini adalah menentukan apakah suatu individu berpotensi stroke atau tidak dan karena label tidak bersifat kontinu maka kita tidak akan menggunakan regresi dalam prediksi. 
+Pada tahap modelling ini, kita akan membuat 3 model untuk prediksi. Model yang digunakan antara lain adalah K-Nearest Neighbour Classifier, Random Forest Classifier, dan Gradient Boosting Classifier. Alasan mengapa kita akan mengunakan model tersebut adalah tujuan dari masalah yang diangkat dalam proyek ini adalah menentukan apakah suatu individu berpotensi stroke atau tidak dan karena label tidak bersifat kontinu maka kita tidak akan menggunakan regresi dalam prediksi. 
+
+Algoritma KNN algoritma yang menggunakan ‘kesamaan fitur’ untuk memprediksi nilai dari setiap data yang baru. Dengan kata lain, setiap data baru diberi nilai berdasarkan seberapa mirip titik tersebut dalam set pelatihan. 
+
+Algoritma random forest adalah salah satu algoritma supervised learning yang dapat digunakan untuk menyelesaikan masalah klasifikasi dan regresi. Random forest merupakan salah satu model machine learning yang termasuk ke dalam kategori ensemble (group) learning. Ensemble merupakan model prediksi yang terdiri dari beberapa model dan bekerja secara bersama-sama sehingga tingkat keberhasilan akan lebih tinggi dibanding model yang bekerja sendirian. Pada model ensemble, setiap model harus membuat prediksi secara independen. Kemudian, prediksi dari setiap model ensemble ini digabungkan untuk membuat prediksi akhir. 
+
+Algoritma boosting adalah algortima yang ekerja dengan membangun model dari data latih. Kemudian ia membuat model kedua yang bertugas memperbaiki kesalahan dari model pertama. Model ditambahkan sampai data latih terprediksi dengan baik atau telah mencapai jumlah maksimum model untuk ditambahkan.  Caranya kerja dari algoritma ini adalah dengan menggabungkan beberapa model sederhana dan dianggap lemah (weak learners) sehingga membentuk suatu model yang kuat (strong ensemble learner).
 
 Tahapan yang dilakukan adalah melakukan deklarasi tiap model kemudian memberikan parameter terhadap masing-masing model. Parameter yang digunakan untuk model K-NN adalah random state = 777 dan untuk model yang lain memiliki parameter yang diatur secara default. Kemudian, masing-masing model dilakukan fitting model dengan data dari X_train dan y_train.
 
@@ -75,9 +93,10 @@ Tahapan yang dilakukan adalah melakukan deklarasi tiap model kemudian memberikan
 
 Pada tahap akhir proyek machine learning ini, kita akan mengevaluasi performa model melalui metriks. Metriks yang digunakan lain adalah MSE, akurasi, presisi, recall, F1. Alasan mengapa menggunakan metriks tersebut adalah untuk mengukur error yang diperoleh tiap model dengan Menggunakan MSE dan error yang terkecil akan dipilih sebagai model terbaik. Untuk metriks yang lainnya, kita hanya mengukur performa model dari akurasi tetapi kita juga melihat presisi, recall, dan F1 karena belum tentu model memiliki akurasi tinggi akan dikatakan bagus jika metriks yang lain tidak diperhatikan dan hal ini akan mempengaruhi performa model.
 
+Berikut merupakan formula untuk setiap metriks yang dipakai dalam pengevealuasian model.
+<img width="134" alt="3" src="https://user-images.githubusercontent.com/85445609/181037781-fb4187b4-3794-4ee4-9898-cce4c872e9f1.png">
+<img width="275" alt="4" src="https://user-images.githubusercontent.com/85445609/181037797-3bf430b6-4939-47da-9fef-8d2ef118f06c.png">
+
 Kita ketahui bahwa performa terbaik dipegang oleh model dari Random Forest Classifier. Hal ini bisa kita lihat nilai MSE yang diberikan, yaitu untuk train hampir mendekati 0 dan test 0.000031. Kita juga bisa membuktikan bahwa model Random Forest Classifier adalah model terbaik diantara yang lain dengan melihat hasil dari metriks lain seperti akurasi, presisi, recall, dan F1. Berikut merupakan hasil metriks-metrisk yang disebutkan untuk model Random Forest Classiefier.
 
-
-
-
-
+<img width="298" alt="2" src="https://user-images.githubusercontent.com/85445609/180754280-47dae7aa-cf6a-4da8-96b8-177d4a7ac60f.png">
