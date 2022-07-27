@@ -103,7 +103,7 @@ Pada tahap akhir proyek machine learning ini, kita akan mengevaluasi performa mo
 
 Berikut merupakan formula untuk setiap metriks yang dipakai dalam pengevealuasian model.
 
-https://latex.codecogs.com/gif.latex?%5Cdisplaystyle%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20%5Cfrac%7B1%7D%7Bn%7D%28y_i-%20%5Chat%7By%7D_i%29%5E2
+![rumus 1](https://latex.codecogs.com/gif.latex?%5Cdisplaystyle%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20%5Cfrac%7B1%7D%7Bn%7D%28y_i-%20%5Chat%7By%7D_i%29%5E2)
 
 Keterangan : 
 n = number of data points
