@@ -107,11 +107,9 @@ Berikut merupakan formula untuk setiap metriks yang dipakai dalam pengevealuasia
 
 Keterangan : 
 
-n = number of data points
-
-y = observed values
-
-ŷ = predicted values
+n = number of data points.
+y = observed values.
+ŷ = predicted values.
 
 ![rumus 2](https://latex.codecogs.com/gif.latex?%5Cinline%20Akurasi%20%3D%20%5Cfrac%7BTP%20&plus;%20TN%7D%7BTP&plus;TN&plus;FP&plus;FN%7D)
 
@@ -123,13 +121,10 @@ y = observed values
 
 Keterangan : 
 
-TP : True Postive
-
-TN = True Negative
-
-FP = False Positive
-
-FN = False Negative
+TP : True Postive.
+TN = True Negative.
+FP = False Positive.
+FN = False Negative.
 
 Kita ketahui bahwa performa terbaik dipegang oleh model dari Random Forest Classifier. Hal ini bisa kita lihat nilai MSE yang diberikan, yaitu untuk train hampir mendekati 0 dan test 0.000031. 
 
@@ -138,14 +133,17 @@ Kita ketahui bahwa performa terbaik dipegang oleh model dari Random Forest Class
 <img width="289" alt="6" src="https://user-images.githubusercontent.com/85445609/181152933-d40ca410-e8c0-4f66-8837-451b502f31bc.png">
 
 
-Kita juga bisa membuktikan bahwa model Random Forest Classifier adalah model terbaik diantara yang lain dengan melihat hasil dari metriks lain seperti akurasi, presisi, recall, dan F1. Berikut merupakan hasil metriks-metrisk yang disebutkan untuk model Random Forest Classiefier.
+Kita juga bisa membuktikan bahwa model Random Forest Classifier adalah model terbaik diantara yang lain dengan melihat hasil dari metriks lain seperti akurasi, presisi, recall, dan F1. Berikut merupakan hasil metriks-metriks yang disebutkan untuk model K-Nearest Neighbour, Random Forest Classiefier, dan Gradient Boosting .
 
 **K-Nearest Neighbour**
+
 <img width="305" alt="7" src="https://user-images.githubusercontent.com/85445609/181153052-5107dd7f-96e0-4e21-ac5e-f6331b7c87a9.png">
 
 **Random Forest**
+
 <img width="298" alt="2" src="https://user-images.githubusercontent.com/85445609/180754280-47dae7aa-cf6a-4da8-96b8-177d4a7ac60f.png">
 
 **Gradient Boosting**
+
 <img width="297" alt="8" src="https://user-images.githubusercontent.com/85445609/181153116-c2aba0fa-18fb-45f2-bf93-5cbbae308dfa.png">
 
