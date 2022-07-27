@@ -71,7 +71,7 @@ Kita ketahui bahwa kiya memiliki fitur kategorikal yang akan digunakan sebagai i
 Pada tahap EDA, kiita ketahui jumlah label pada attribute stroke tidak seimbang. Hal ini bisa kita buktikan dari grafik histogram untuk jumlah orang yang terkena stroke atau tidak pada tahapan EDA – Univariate Analysis. Masalah tersebut, kita dapat selesaikan dengan menggunakan teknik SMOTE dari library imbalance-learn agar jumlah nilai 1 pada attribute stroke seimbang dengan jumlah 0.
 
 - **Splitting Data**
-Pada tahap ini, kita akan membuat data train dan data test untuk input pada model yang kita buat nantinya. Data ini akan kita bagi menjadi X_train, y_train, X_test, y_test dengan menggunakan teknik train_test_split pada library sklearn.model.selection.
+Pada tahap ini, kita akan membuat data train dan data test untuk input pada model yang kita buat nantinya. Data ini akan kita bagi menjadi X_train, y_train, X_test, y_test dengan menggunakan teknik train_test_split pada library sklearn.model.selection. Untuk pembagian porsi datanya kita akan membuat train data memiliki porsi sebesar 80% dan data test sebesar 20% serta random state yang dipakai adalah 777. Alasan mengapa kita perlu porsi data train sebesar itu adalah jumlah data yang akan ditraining akan menentukan kekuatan prediksi dari model. Sedangkan untuk data test, porsi yang diperlukan tidak banyak karena seperti namanya data tersebut akan digunakan untuk melihat seberapa akurat model dapat memprediksi data yang belum pernah dilihat dan random_state disini akan berperan untuk mengontrol random number generator yang digunakan. 
 
 - **Standarisasi**
 Pada tahap terakhir ini, kita akan melakukan standarisasi pada data- data yang sudah kita buat sebelumnya. Kita akan menggunakan StandarScaler() pada library sklearn.preprocessing. Random forest merupakan salah satu model machine learning yang termasuk ke dalam kategori ensemble (group) learning, artinya 
@@ -95,7 +95,24 @@ Tahapan yang dilakukan adalah melakukan deklarasi tiap model kemudian memberikan
 2. Parameter yang digunakan untuk model Random Forest adalah random_state = 777. Parameter tersebut berguna untuk mengontrol random number generator yang digunakan. 
 3. Disini kita kana menggunakan parameter secara default untuk model Gradient Boost Algorithm.
 
-Kemudian, masing-masing model dilakukan fitting model dengan data dari X_train dan y_train. Sebagai tambahan saja, kita akan melihat akurasi tiap model dengan menggunakan fungsi accuracy_score() pada library sklearn_metrics.
+Kemudian, masing-masing model dilakukan fitting model dengan data dari X_train dan y_train. Sebagai tambahan saja, kita akan melihat akurasi tiap model dengan menggunakan fungsi accuracy_score() pada library sklearn_metrics. Disini kita bisa melihat secara langsung untuk menilai model manakan yang lebih baik berdasarkan akurasinya. Akurasi yang akan diperlihatkan setiap model adalah akurasi untuk training set dan test set. 
+
+Dari hasil tersebut kita bisa melihat bahwa : 
+
+K-NN memiliki akurasi sebesar : 
+1. Test set : 0.9470164609053497
+2. Training set : 0.9522890946502057
+
+Random Forest memiliki akurasi sebesar : 
+1. Test set  : 0.9691358024691358
+2. Training set : 1.0
+
+Gradient Boosting Algorithm memiliki akurasi sebesar : 
+1. Test set  : 0.9449588477366255
+2. Training set : 0.9513888888888888
+
+Untuk sementara ini, model terbaik dimiliki oleh Random Forest karena memiliki akurasi yang tinggi dari model yang lain baik dari akurasi training set maupun test set.
+
 
 ## Evaluation
 
@@ -151,4 +168,38 @@ Kita juga bisa membuktikan bahwa model Random Forest Classifier adalah model ter
 **Gradient Boosting**
 
 <img width="297" alt="8" src="https://user-images.githubusercontent.com/85445609/181153116-c2aba0fa-18fb-45f2-bf93-5cbbae308dfa.png">
+
+Dari hasil metriks yang ada pada gambar diatas kita ketahui bahwa : 
+
+K-NN memiliki:
+
+1. akurasi : 0.95
+2. presisi : 0.93 untuk kelas 0 dan 0.96 kelas 1
+3. recall : 0.96 untuk kelas 0 dan 0.93 kelas 1
+4. F1 : 0.95 untuk kelas 0 dan 0.95 kelas 1
+
+Artinya, Algoritma ini dapat memprediksi hasil dengan benar untuk semua inputan data sebesar 0.95. Proporsi positive identification yang sebenarnya benar untuk model ini adalah sebesar 0.93 untuk kelas 0 dan 0.96 kelas 1. Proporsi positif aktual yang diidentifikasi dengan benar adalah sebesar 0.96 untuk kelas 0 dan 0.93 kelas 1. Tingkat performa diperoleh sebesar 0.95 untuk masing-masing kelas.
+
+Random Forest memiliki:
+
+1. akurasi : 0.97
+2. presisi : 0.96 untuk kelas 0 dan 0.98 kelas 1
+3. recall : 0.98 untuk kelas 0 dan 0.96 kelas 1
+4. F1 : 0.97 untuk kelas 0 dan 0.97 kelas 1
+
+Artinya, Algoritma ini dapat memprediksi hasil dengan benar untuk semua inputan data sebesar 0.97. Proporsi positive identification yang sebenarnya benar untuk model ini adalah sebesar 0.96 untuk kelas 0 dan 0.98 kelas 1. Proporsi positif aktual yang diidentifikasi dengan benar adalah sebesar 0.98 untuk kelas 0 dan 0.96 kelas 1. Tingkat performa diperoleh sebesar 0.97 untuk masing-masing kelas.
+
+Gradient Boosting memiliki:
+
+1. akurasi : 0.94
+2. presisi : 0.93 untuk kelas 0 dan 0.96 kelas 1
+3. recall : 0.96 untuk kelas 0 dan 0.93 kelas 1
+4. F1 : 0.95 untuk kelas 0 dan 0.94 kelas 1
+
+Artinya, Algoritma ini dapat memprediksi hasil dengan benar untuk semua inputan data sebesar 0.94. Proporsi positive identification yang sebenarnya benar untuk model ini adalah sebesar 0.93 untuk kelas 0 dan 0.96 kelas 1. Proporsi positif aktual yang diidentifikasi dengan benar adalah sebesar 0.96 untuk kelas 0 dan 0.93 kelas 1. Tingkat performa diperoleh sebesar 0.95 untuk kelas 0 dan 0.94 kelas 1.
+
+Kita dapat simpulkan, model yang memiliki performa terbaik dimiliki oleh Random Forest.
+
+
+
 
