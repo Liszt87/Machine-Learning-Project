@@ -78,16 +78,24 @@ Pada tahap terakhir ini, kita akan melakukan standarisasi pada data- data yang s
 
 ## Modelling
 
-Pada tahap modelling ini, kita akan membuat 3 model untuk prediksi. Model yang digunakan antara lain adalah K-Nearest Neighbour Classifier, Random Forest Classifier, dan Gradient Boosting Classifier. Alasan mengapa kita akan mengunakan model tersebut adalah tujuan dari masalah yang diangkat dalam proyek ini adalah menentukan apakah suatu individu berpotensi stroke atau tidak dan karena label tidak bersifat kontinu maka kita tidak akan menggunakan regresi dalam prediksi. 
+Pada tahap modelling ini, kita akan membuat 3 model untuk prediksi. Model yang digunakan antara lain adalah K-Nearest Neighbour Classifier, Random Forest Classifier, dan Gradient Boosting Classifier. Alasan mengapa kita akan mengunakan model tersebut adalah tujuan dari masalah yang diangkat dalam proyek ini adalah menentukan apakah suatu individu berpotensi stroke atau tidak dan karena label tidak bersifat kontinu maka kita tidak akan menggunakan regresi dalam prediksi. Oleh karena itu, pada setiap model yang dideklarasikan nanti memiliki kata "classifier" diakhirnya. Berikut merupakan penjelasan tentang model yang akan kita pakai untuk memprediksi.
 
+**K-Nearest Neighbour**
 Algoritma KNN algoritma yang menggunakan ‘kesamaan fitur’ untuk memprediksi nilai dari setiap data yang baru. Dengan kata lain, setiap data baru diberi nilai berdasarkan seberapa mirip titik tersebut dalam set pelatihan. 
 
+**Random Forest**
 Algoritma random forest adalah salah satu algoritma supervised learning yang dapat digunakan untuk menyelesaikan masalah klasifikasi dan regresi. Random forest merupakan salah satu model machine learning yang termasuk ke dalam kategori ensemble (group) learning. Ensemble merupakan model prediksi yang terdiri dari beberapa model dan bekerja secara bersama-sama sehingga tingkat keberhasilan akan lebih tinggi dibanding model yang bekerja sendirian. Pada model ensemble, setiap model harus membuat prediksi secara independen. Kemudian, prediksi dari setiap model ensemble ini digabungkan untuk membuat prediksi akhir. 
 
-Algoritma boosting adalah algortima yang ekerja dengan membangun model dari data latih. Kemudian ia membuat model kedua yang bertugas memperbaiki kesalahan dari model pertama. Model ditambahkan sampai data latih terprediksi dengan baik atau telah mencapai jumlah maksimum model untuk ditambahkan.  Caranya kerja dari algoritma ini adalah dengan menggabungkan beberapa model sederhana dan dianggap lemah (weak learners) sehingga membentuk suatu model yang kuat (strong ensemble learner).
+**Gradient Boosting Algorithm**
+Gradient boosting termasuk supervised learning berbasis decision tree yang dapat digunakan untuk klasifikasi. Algoritma gradient boosting bekerja secara sekuensial menambahkan prediktor sebelumnya yang kurang cocok dengan prediksi ke ensemble, memastikan kesalahan yang dibuat sebelumnya diperbaiki. Penggambaran sederhana konsep ensemble adalah keputusan-keputusan dari berbagai mesin pembelajaran digabungkan, kemudian untuk kelas yang menerima mayoritas ‘suara’ adalah kelas yang akan diprediksi oleh keseluruhan ensemble.
 
-Tahapan yang dilakukan adalah melakukan deklarasi tiap model kemudian memberikan parameter terhadap masing-masing model. Parameter yang digunakan untuk model K-NN adalah random state = 777 dan untuk model yang lain memiliki parameter yang diatur secara default. Kemudian, masing-masing model dilakukan fitting model dengan data dari X_train dan y_train.
+Tahapan yang dilakukan adalah melakukan deklarasi tiap model kemudian memberikan parameter terhadap masing-masing model. Kemudian untuk parameter tiap model : 
 
+1. Parameter yang digunakan untuk model K-NN adalah n_neighbour = 10. Pemuilihan nilai tersebut untuk menghindari overfit dan hasil prediksinya memiliki varians tinggi jika parameter tersebut terlalu rendah dan sebaliknya, untuk menghindari model yang dihasilkan akan underfit dan prediksinya memiliki bias yang tinggi.
+2. Parameter yang digunakan untuk model Random Forest adalah random_state = 777. Parameter tersebut berguna untuk mengontrol random number generator yang digunakan. 
+3. Disini kita kana menggunakan parameter secara default untuk model Gradient Boost Algorithm.
+
+Kemudian, masing-masing model dilakukan fitting model dengan data dari X_train dan y_train. Sebagai tambahan saja, kita akan melihat akurasi tiap model dengan menggunakan fungsi accuracy_score() pada library sklearn_metrics.
 
 ## Evaluation
 
@@ -95,7 +103,13 @@ Pada tahap akhir proyek machine learning ini, kita akan mengevaluasi performa mo
 
 Berikut merupakan formula untuk setiap metriks yang dipakai dalam pengevealuasian model.
 
-<img width="134" alt="3" src="https://user-images.githubusercontent.com/85445609/181037781-fb4187b4-3794-4ee4-9898-cce4c872e9f1.png">
+https://latex.codecogs.com/gif.latex?%5Cdisplaystyle%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20%5Cfrac%7B1%7D%7Bn%7D%28y_i-%20%5Chat%7By%7D_i%29%5E2
+
+Keterangan : 
+n = number of data points
+y = observed values
+ŷ = predicted values
+
 <img width="275" alt="4" src="https://user-images.githubusercontent.com/85445609/181037797-3bf430b6-4939-47da-9fef-8d2ef118f06c.png">
 
 Kita ketahui bahwa performa terbaik dipegang oleh model dari Random Forest Classifier. Hal ini bisa kita lihat nilai MSE yang diberikan, yaitu untuk train hampir mendekati 0 dan test 0.000031. Kita juga bisa membuktikan bahwa model Random Forest Classifier adalah model terbaik diantara yang lain dengan melihat hasil dari metriks lain seperti akurasi, presisi, recall, dan F1. Berikut merupakan hasil metriks-metrisk yang disebutkan untuk model Random Forest Classiefier.
