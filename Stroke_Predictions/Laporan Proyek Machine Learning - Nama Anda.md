@@ -107,8 +107,10 @@ Berikut merupakan formula untuk setiap metriks yang dipakai dalam pengevealuasia
 
 Keterangan : 
 
-n = number of data points.
+n = number of data points. 
+
 y = observed values.
+
 ŷ = predicted values.
 
 ![rumus 2](https://latex.codecogs.com/gif.latex?%5Cinline%20Akurasi%20%3D%20%5Cfrac%7BTP%20&plus;%20TN%7D%7BTP&plus;TN&plus;FP&plus;FN%7D)
@@ -122,8 +124,11 @@ y = observed values.
 Keterangan : 
 
 TP : True Postive.
+
 TN = True Negative.
+
 FP = False Positive.
+
 FN = False Negative.
 
 Kita ketahui bahwa performa terbaik dipegang oleh model dari Random Forest Classifier. Hal ini bisa kita lihat nilai MSE yang diberikan, yaitu untuk train hampir mendekati 0 dan test 0.000031. 
