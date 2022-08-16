@@ -94,6 +94,7 @@ Variabel ini digunakan untuk melakukan ranking terhadap sudut yang sudah dihitun
 
 Berikut merupakan hasil dari sistem rekomendasi yang sudah kita buat sebelumnya.
 
+<img width="396" alt="a" src="https://user-images.githubusercontent.com/85445609/184895346-62a2e90e-3bd7-4fed-ad03-663cdb945d3f.png">
 
 Dari top-10 rekomendasi yang dikeluarkan oleh sistem, kita bisa melihat bahwa dari film yang direkomendasikan tidak memiliki korelasi dengan film yang kita rujuk, yaitu Jumanji. Oleh karena itu, kita akan membahas ini pada taha evaluasi.
 
@@ -101,18 +102,41 @@ Dari top-10 rekomendasi yang dikeluarkan oleh sistem, kita bisa melihat bahwa da
 
 Pada tahap terakhir ini, kita akan mengevaluasi sistem rekomendasi yang sudah kita buat. Metriks yang akan dipakai adalah cosine distance. Metriks ini bekerja dengan melihat sudut yang dibentuk antara dua vektor. Pada machine learning, metriks ini digunakan utnuk melihat kemiripan antara n-neighborhood dan untuk kasus ini maka neighborhood akan dijadikan top-n rekomendasi. Suatu vektor dikatakan mirip jika sudut dibentuk oleh vektor a dan vektor b hampir mendekati 0 dan tidak atau hampir mirip jika mendekati atau tepat bernilai 1. Metriks cosine distance memiliki formula sebagai berikut: 
 
+1 - Cosine Similarity = Cosine Distance
+
+dimana 
+
+Cosine Similiarity = cos(θ) 
+
+dan 
+
+[rumus1](https://chart.apis.google.com/chart?cht=tx&chl=cos(%20%5Ctheta%20)%20%3D%20%5Cfrac%7BA.B%7D%7B%20%5C%7C%20A%20%5C%7C%20.%20%5C%7C%20B%20%5C%7C%20%7D%20)
+
+dimana A dan B adalah vektor dan ||A|| dan ||B|| adalah norm dari masing-masing vektor.
+
 Tahapannya sama dengan kita membuat sistem sebelumnya. Pertama, kita akan melakukan transformasi terhadap attribute overview dengan fungsi CountVectorizer()
+
+<img width="451" alt="1" src="https://user-images.githubusercontent.com/85445609/184895951-23217df6-35b0-4526-b62e-675c078829df.png">
+
+Memeriksa dan membuat varibel content untuk dilakukan evaluasi
+
+<img width="346" alt="2" src="https://user-images.githubusercontent.com/85445609/184895990-883aade8-3ef6-440c-9065-74bdf60a7320.png">
+
+Kemudian, dilakukan tranformasi data untuk sinopsis pada film Jumanji
+
+<img width="289" alt="3" src="https://user-images.githubusercontent.com/85445609/184895996-9f993a5c-54db-4d0c-8b96-4f00f11eeff9.png">
 
 Hasil encoding sebelumnya akan dijadikan evaluasi dengan menggunakan cosine distance untuk melihat jarak antar vektor tiap film berdasarkan sudut yang dibentuk. Disini kita bisa melihat sudut yang dibentuk antar vektor film Jumanji dengan film yang lainnya.
 
+<img width="344" alt="4" src="https://user-images.githubusercontent.com/85445609/184896578-d4fa98ef-1207-47e1-a6bc-9c99c40dd1cd.png">
+
 Sekarang, kita urutkan hasil sudut yang dibentuk untuk melihat film apa saja yang muncul. Disini kita akan melihat top-10 film yang muncul berdasarkan sinopsis pada film Jumanji.
+
+<img width="416" alt="5" src="https://user-images.githubusercontent.com/85445609/184896880-20b25b15-a630-4fce-9b61-7912dfc0dd78.png">
 
 Untuk melakukan evaluasi, kita akan melihat nilai 5 teratas untuk sudut yang dibentuk antar vektor film dengan vektor film Jumanji.
 
+<img width="240" alt="6" src="https://user-images.githubusercontent.com/85445609/184897000-1ef41ab5-f7f9-40ea-a576-c9843eedcc91.png">
+
 Perhatikan bahwa nilai yang dibentuk dari sudut semakin kebawah semakin besar. Suatu vektor akan dikatakan mirip jika nilainya mendekati 0 dan 1 jika tidak. Kita bisa melihat bahwa sudut yang dibentuk lebih dari 0.50. Artinya, dari Top-10 rekomendasi untuk film Jumanju tidak ada yang mirip dengan film tersebut. Oleh karena itu, penggunaan sinopsis sebagai acuan untuk menentukan rekomendasi pada film tidak cocok sehingga diperlukan data lain agar sistem rekomendasi bisa terimprovisasi. 
-
-
-
-
-
 
