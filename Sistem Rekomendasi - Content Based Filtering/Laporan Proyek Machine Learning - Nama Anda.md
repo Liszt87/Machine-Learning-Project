@@ -100,43 +100,46 @@ Dari top-10 rekomendasi yang dikeluarkan oleh sistem, kita bisa melihat bahwa da
 
 ## Evaluation
 
-Pada tahap terakhir ini, kita akan mengevaluasi sistem rekomendasi yang sudah kita buat. Metriks yang akan dipakai adalah cosine distance. Metriks ini bekerja dengan melihat sudut yang dibentuk antara dua vektor. Pada machine learning, metriks ini digunakan utnuk melihat kemiripan antara n-neighborhood dan untuk kasus ini maka neighborhood akan dijadikan top-n rekomendasi. Suatu vektor dikatakan mirip jika sudut dibentuk oleh vektor a dan vektor b hampir mendekati 0 dan tidak atau hampir mirip jika mendekati atau tepat bernilai 1. Metriks cosine distance memiliki formula sebagai berikut: 
-
-1 - Cosine Similarity = Cosine Distance
-
-dimana 
-
-Cosine Similiarity = cos(θ) 
-
-dan 
-
-[rumus1](https://chart.apis.google.com/chart?cht=tx&chl=cos(%20%5Ctheta%20)%20%3D%20%5Cfrac%7BA.B%7D%7B%20%5C%7C%20A%20%5C%7C%20.%20%5C%7C%20B%20%5C%7C%20%7D%20)
-
-dimana A dan B adalah vektor dan ||A|| dan ||B|| adalah norm dari masing-masing vektor.
-
-Tahapannya sama dengan kita membuat sistem sebelumnya. Pertama, kita akan melakukan transformasi terhadap attribute overview dengan fungsi CountVectorizer()
+Pada tahap terakhir ini, kita akan mengevaluasi sistem rekomendasi yang sudah kita buat. Metriks evaluasi untuk mengevaluasi sitem rekomendasi yang sudah dibuat adalah nDCG dimana metriks tersebut digunakan sebagai evaluasi seberapa baik sistem rekomendasi yang kita buat untuk melakukan ranking terhadap item. Tahapannya sama dengan kita membuat sistem sebelumnya. Pertama, kita akan melakukan transformasi terhadap attribute overview dengan fungsi CountVectorizer()
 
 <img width="451" alt="1" src="https://user-images.githubusercontent.com/85445609/184895951-23217df6-35b0-4526-b62e-675c078829df.png">
 
 Memeriksa dan membuat varibel content untuk dilakukan evaluasi
 
-<img width="346" alt="2" src="https://user-images.githubusercontent.com/85445609/184895990-883aade8-3ef6-440c-9065-74bdf60a7320.png">
+<img width="377" alt="1" src="https://user-images.githubusercontent.com/85445609/185534876-329f8edc-887a-456f-b5ce-0ade94888701.png">
 
-Kemudian, dilakukan tranformasi data untuk sinopsis pada film Jumanji
+Kemudian, dilakukan tranformasi data untuk sinopsis pada film Grumpier Old Men.
 
-<img width="289" alt="3" src="https://user-images.githubusercontent.com/85445609/184895996-9f993a5c-54db-4d0c-8b96-4f00f11eeff9.png">
+<img width="368" alt="2" src="https://user-images.githubusercontent.com/85445609/185534956-79acedcf-3d42-4fe3-86d6-e6391a831ebc.png">
 
-Hasil encoding sebelumnya akan dijadikan evaluasi dengan menggunakan cosine distance untuk melihat jarak antar vektor tiap film berdasarkan sudut yang dibentuk. Disini kita bisa melihat sudut yang dibentuk antar vektor film Jumanji dengan film yang lainnya.
+Hasil encoding sebelumnya akan dijadikan evaluasi dengan menggunakan cosine distance untuk melihat jarak antar vektor tiap film berdasarkan sudut yang dibentuk. Disini kita bisa melihat sudut yang dibentuk antar vektor film Grumpier Old Men dengan film yang lainnya.
 
-<img width="344" alt="4" src="https://user-images.githubusercontent.com/85445609/184896578-d4fa98ef-1207-47e1-a6bc-9c99c40dd1cd.png">
+<img width="390" alt="3" src="https://user-images.githubusercontent.com/85445609/185535002-9d5111d9-0cdd-485e-a89a-08c3be9f0381.png">
 
-Sekarang, kita urutkan hasil sudut yang dibentuk untuk melihat film apa saja yang muncul. Disini kita akan melihat top-10 film yang muncul berdasarkan sinopsis pada film Jumanji.
+Sekarang, kita urutkan hasil sudut yang dibentuk untuk melihat film apa saja yang muncul. Disini kita akan melihat top-10 film yang muncul berdasarkan sinopsis pada film Grumpier Old Men.
 
-<img width="416" alt="5" src="https://user-images.githubusercontent.com/85445609/184896880-20b25b15-a630-4fce-9b61-7912dfc0dd78.png">
+<img width="460" alt="4" src="https://user-images.githubusercontent.com/85445609/185535057-9e6101f1-c6c7-4b5c-9200-f3d768f4f5d9.png">
 
-Untuk melakukan evaluasi, kita akan melihat nilai 5 teratas untuk sudut yang dibentuk antar vektor film dengan vektor film Jumanji.
+Selanjutnya, kita akan mengevaluasi sistem rekomendasi yang sudah kita buat dengan menggunakan nDCG score. nDCG adalah rasio skor DCG peserta atas skor DCG peringkat ideal. Score yang diperoleh dari nDCG berada diantara 0 dan 1. Semakin besar nilai socrenya maka sistem kita berhasil melakukan ranking terhadap suatu item. Berikut merupakan rumus dari nDCG. 
 
-<img width="240" alt="6" src="https://user-images.githubusercontent.com/85445609/184897000-1ef41ab5-f7f9-40ea-a576-c9843eedcc91.png">
+[rumus1](https://chart.apis.google.com/chart?cht=tx&chl=nDCG%20%3D%20%5Cfrac%7BDCG%7D%7BiDCG%7D%20)
 
-Perhatikan bahwa nilai yang dibentuk dari sudut semakin kebawah semakin besar. Suatu vektor akan dikatakan mirip jika nilainya mendekati 0 dan 1 jika tidak. Kita bisa melihat bahwa sudut yang dibentuk lebih dari 0.50. Artinya, dari Top-10 rekomendasi untuk film Jumanju tidak ada yang mirip dengan film tersebut. Oleh karena itu, penggunaan sinopsis sebagai acuan untuk menentukan rekomendasi pada film tidak cocok sehingga diperlukan data lain agar sistem rekomendasi bisa terimprovisasi. 
+dimana 
+
+DCG adalah nilai DCG untuk reccomended order Gain dan iDCG adalah nilai untuk ideal order dan rumus untuk masing-masing adalah sama dan sebagai berikut.
+
+[rumus2](https://chart.apis.google.com/chart?cht=tx&chl=%5Csum_i%5En%20%20%5Cfrac%7B%20relevance_%7Bi%7D%20%7D%7Blog_%7B2%7D(i%2B1)%20%7D%20%20)
+
+Pada tahap ini kita akan mambuat array yang berisi top-10 rekomendasi dari film yang sudah kita rujuk sebagai nilai prediksi dan array yang berisi top 10 rekomendasi berdasarkan penalaran kita atau ranking dari google sebagai nilai aktual.
+
+<img width="463" alt="5" src="https://user-images.githubusercontent.com/85445609/185536414-940a0be6-7108-46f1-a134-e58ee7d1668b.png">
+
+Kita akan menghitung score nDCG dengan menggunakan library sklearn.metrics dengan fungsi ndcg_score.
+
+<img width="384" alt="6" src="https://user-images.githubusercontent.com/85445609/185536471-90054f69-8d9d-4790-9b2d-09e873efdb81.png">
+
+Perhatikan bahwa nilai yang dihasilkan mendekati satu, artinya sistem rekomendasi yang kita buat melakukan ranking dengan baik berdasarkan nilai yang dikembalikan oleh fungsi similarity yang kita deklarasikan. Namun, Meskipun hasil yang diberikan baik berdasarkan score yang didapat, hasil realita tidak sesuai yang diinginkan. Misal, While You Were Sleeping adalah film romantis yang mana sama dengan film yang kita rujul tetapi sistem tidak merekomendasikan hal tersebut karena sistem merekomendasikan berdasarkan sinopsis saja.
+
+
+
 
